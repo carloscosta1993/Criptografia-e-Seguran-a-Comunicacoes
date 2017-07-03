@@ -1,0 +1,406 @@
+\documentclass[11pt,a4paper]{article}
+
+% Import Libraries
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[inline]{enumitem}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algcompatible}
+\usepackage{multicol}
+\usepackage[noend]{algpseudocode}
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage{tikz}
+%\usepackage[showframe]{geometry}
+\usepackage[a4paper,bindingoffset=0.2in, left=1in,right=1in,top=0.9in,bottom=0.9in,footskip=.25in]{geometry}
+
+
+% Tikz Libraries
+\usetikzlibrary{positioning}
+\usetikzlibrary{backgrounds}
+
+% Theorem Environment 
+\theoremstyle{defn, nobreak=true}
+\newtheorem{defn}{Definition}
+
+% New Commands
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\ie}{\emph{i.e.}}
+\newcommand{\iffw}{\emph{iff }}
+\newcommand{\eg}{\emph{e.g.}}
+\algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\algnewcommand{\IIf}[1]{\State\algorithmicif\ #1\ \algorithmicthen}
+\algnewcommand{\ElseI}[1]{\unskip\ \algorithmicelse\ #1}
+\algnewcommand{\EndIIf}{\unskip\ \algorithmicend\ \algorithmicif}
+\algnewcommand{\LeftComment}[1]{\Statex \(\triangleright\) #1}
+\def\NoNumber#1{{\def\alglinenumber##1{}\State #1}\addtocounter{ALG@line}{-1}}
+\algrenewcommand\algorithmicindent{0.85em}
+
+\begin{document}
+
+%
+%%%%%%%%%% Make Title Area
+\vspace{-2cm}
+\begin{table}[h]
+\begin{minipage}{0.65\textwidth}
+\centering
+\begin{tabular}{c}
+\large\textbf{Instituto Superior T\'ecnico}\\
+\large\textbf{Cryptography and Network Security} \\
+\large\textit{Author: Miguel Alves Ferreira, 75471} \\
+\large\underline{Email: miguel.alves.ferreira@ist.utl.pt}, \\
+\end{tabular}
+\label{tab:tab1}
+\end{minipage}
+~\hfill~
+\begin{minipage}{0.35\textwidth}
+\centering
+\includegraphics[scale=0.5]{logo_IST}
+\end{minipage}
+\end{table}
+\vspace{-5mm}
+% Title
+\begin{center}
+\large\textbf{Semester Project: Graphical Passwords for User Authentication}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction} \label{sec:intro}
+
+The authentication process from a partie A to a partie B consists of an interaction such that party A provides an attribute of his to party B which comproved the identity of A to B. In computer based systems, the authentication process takes the form either a machine-machine interaction and human-machine interaction. The first,  The second, also named as \textbf{User authentication}, in particular, consists of an interaction where a user given input is provided to the machine so to comproved that user U is allowed access in the given system. 
+
+In the context of User Authentication, PIN and password based Authentication are widely regarded as the most commom methods to accomplish user authentication to a computer based system. PIN and password based Authentication consist of a scheme where a user proviedes an input consisting of a user identifier (also known as username) and respective textual password; such inputs (or a function of it) is passed to the machine which stores the set of all user identifies, confirming or not its pressence. Examples range from web applications, to ATM authentication. The security of password based Authentication relies on the following permisses: 
+
+\begin{enumerate}
+
+\item The password strength is a function of its length, its complexity (measured by the entropy ) and its unpredictability (measured by the ).    
+
+\item The host storing the password does not store in plain text but encrypted using a cryptographafic hash function. 
+
+\item Password authentication does not normally require complicated or robust hardware since authentication of this type is in general simple and does not require much processing power. 
+
+\end{enumerate}
+
+A secure password based Authentication is naturally yield by a password which complies with the notions pointed out above. However, User Authentification is a human. Since a password scheme implies a precise recall of textual input, users tend to select either short passwords or passwords that are easy to remember \cite{} \cite{}. Hence, the human factors of the authetification scheme are open fundemental  , which is explored by a wide range ofof attacks. 
+
+\begin{enumerate}
+
+\item Brute Force Attacks - 
+
+\item Dictionary Attacks - (Online and Offline)
+
+\item Social Engineering Attacks - 
+
+\item Shoulder Surffing - 
+
+\end{enumerate}  
+
+
+Cheswick and Bellovin have pointed out that weak passwords are the most common cause for system break-ins \cite{}
+
+Alternatives consist of 
+
+Graphical Password come up has an alternative to. 
+
+\section{Graphical Passwords}
+
+Several examples of graphical passwords can be found in the literature.
+
+\subsection{Sobrado and Birget in \cite{shouldersurfing}} \label{subsec:das}
+
+\subsection{Passface, by in \cite{passpoint}} \label{subsec:das}
+
+\subsection{Passpoint, by in \cite{passpoint}} \label{subsec:das}
+
+\subsection{DAS - Draw a Secret, by Jermyn and all. in \cite{passpoint}} \label{subsec:das}
+
+DAS --- Draw a Secret --- consists of a graphical password scheme where a user's drawing on a screen is associated with the user's password. The screen is seen as a two dimensional grid such that each cell is mapped to a binary string. As a matter of example, consider the mapping and drawings exibited in Figure \ref{fig:DAS}. It is argued that splitting the display screen in something as small as a $5 {\times} 5$ grid yields a passwords space which as larger than the most commom textual password spaces. \\
+
+Such technique, however, has some  backdrops. Firstly, there is a clear design problem regarding the cell boarder and its interaction with the users drawings, \ie, drawings whose lines slightly cross cell boarder when they are not supposed to. Such problem, however, can be surpassed by considering an approach similar to the one proposed for \textit{Passpoint}, where the password inputed upon registration is weigthed against the user's original password. Secondly, there is an inherant need for an user interface which allows the user to type its password. Besides, Thorpe and van Oorschot in \cite{spaceDAS} have anaylised the passwords space yield by the DAS technique and concluded that while this scheme is less susceptible to dictionary attacks, when compared to textual passwords, the graphical password is potentically much smaller, under the assumption that user tend to choose mirror symmetric passwords.
+
+\section{GPAPI} \label{sec:gpapi}
+
+According to the discussion conducted in the previous section, we conclude that a secure but usable (from a user prespective) Graphical Password system for User Authentication must respect the following permisses.
+
+\begin{enumerate}
+
+\item The system should be based on recognition and not on recall, \ie, during the authentication process, the user should not provide a graphical password but instead identify its graphical password (or a subset of it) from a set provided by the system.
+
+\item The system must guarrantee that the user chosen graphical passwords are strong, \ie, 
+	\begin{enumerate*} 
+		\item The system must guarrantee that the passwords length is large enough;
+
+		\item The system must guarrantee that images making up the graphical passwords are select independently 
+
+		\item The system must guarrantee that the graphical passwords are uniformly distributted over the graphical passwords space.
+	\end{enumerate*} 
+
+\item The system must provide a graphical password alphabet composed of images which are not only perceptually distinguishable and user identifiable \footnote{}, by also difficult to recompute for a attacker which does not have the knownledge of system inner state. 
+
+\item The system must be resistant to Intersection, Shoulder Surfing and Social Engineering Attacks. 
+
+\end{enumerate}
+
+In order to achieve the requirement mentioned above, and in line with the work of Dhamija and Perrig in \cite{dejavu}, we propose a Graphical Password system named GPAPI. It outline as follows. The system stores in a memory a set of $M$ images generated according to the Random Art Algorithm \footnote{http://www.random-art.org}, corresponding to the Graphical Password alphabet. A user registrates in the system by creating a portfólio of $N$ ordered images selected from a set of $M$ possible images provided by the system, leading to a password of length $N$. Upon registration, a user must complete a challenge proposed by the system to achieve authentication. The challenge envolves a set of $m$ images, composed of $n$ images belonging to the user's portfolio and $n-m$ images not belonging to the user's portfolio. The user solves the challenge by correctly identifying all $n$ images present in its portfolio and post them in their relative order. 
+
+\subsection{Graphical Password Alphabet Generation}
+
+The requirements imposed on the generation of the graphical password alphabets ressemble the requirements for hash visualization algorithms, as defined by Perrig and Song in \cite{hasvisual}. A hash visualization algorithm, building on top of the definition of hash functions, is defined as follows.  
+
+\begin{defn} (Hash Visualization Algorithm) A Hash Visualization Algorithm describes a function $h:x \rightarrow I$ mapping an arbitrary string $x$ to an image $I$ which satisfies the following properties.
+
+	\begin{enumerate}
+		\item \textbf{Ease of Computation: } Given $h$ and an arbitrary string $x$, $I=h(x)$ must be easy to compute.
+
+		\item \textbf{Near-one-way Property: } Let the relationship $I_1 \simeq I_2$ denote the fact that two images $I_1$ and $I_2$ are perceptually indistinguishable. \begin{enumerate*} \item For any image $I$, it is computationally infeasable to find an arbitraty input string $x$ such that $I \simeq h(x)$.
+
+		\item For any input string $x$, it is computationally infeasable to find an arbitraty input string $x^{\prime}$ such that $h(x) \simeq h(x^{\prime})$. 
+
+		\end{enumerate*}
+
+		\item \textbf{Regularity Property: } Let $I$ be any image and let $\mathcal{F}\{I\}$ be its Fourier Transform. We define an image to be regular if, for some fixed $\delta$and  $\epsilon$, $\sum_{f > \delta} \left|\mathcal{F}\{I\}(f)\right| < \epsilon$ 
+ 
+	\end{enumerate}
+
+\end{defn}
+
+As mentioned, notice the existing matching between \begin{enumerate*} \item The perceptually distinguishability between images and the \textit{Near-one-way Property}; 
+
+\item The user identifiability of images and the \textit{Regularity Property} (since humans are particularly sensible to images with shapes when compared to images with a great deal of white noise)
+
+\item The possibility for uniformly distributed and independently select images associated with the fact the TOOODOOOO.
+
+\end{enumerate*} \\
+
+Due to the consideration above, we let our Graphical Password alphabet consist of a set of images generated according to a variant of the Random Art Algorithm. The Random Art Algorithm, proposed by Andrej Bauer in \cite{randart}, consists of a function $\textsc{RandArt}:x \rightarrow I$ mapping an arbitrary input string $x$ (consisting of the random number generator seed) to an image $I$, given an set of functions $f_i$ and their probability $p_i$, $\mathcal{E}=\{(f_1,p_1), \dots, (f_n,p_n)\}$. The Random Art Algorithm achieves this mapping by generating an expression $\mathcal{F}:\left[-1:1\right]^2 \rightarrow \left[-1:1\right]^3$ associating each of an image pixels coordenates, $(x,y)$, to a tone expressed according to the RBG color model, $(r,g,b)$ \footnote{https://en.wikipedia.org/wiki/RGB\_color\_model}, according to the algorithm \textsc{RandomArt} described in Algorithm \cite{alg:randart} and considering a $\left[-1:1\right]$ normalization. \\
+
+As a matter of example, consider the set of expressions and respective probabilities $\mathcal{E}=\{(\mathit{add},0.2),(\mathit{sin},0.2),(\mathit{perm},0.2),(\mathit{rbg},0.1),((x,x,x),0.2),((y,y,y),0.1)\}$, where $\mathit{add}(g_1,g_2)$ corresponds to the normalized addiction of any two expressions $g_1$ and $g_2$; $\mathit{sin}(g_1)$ corresponds to the sine of any expression $g_1$; $\mathit{perm}(g_1,g_2,g_3)$ corresponds to a random permutation of any tree expressions $g_1$, $g_2$ and $g_3$; $\mathit{rbg}$ corresponds to a random triple of normalised rgb values. Let the maximum depth of the expression tree be $3$. The result, for a seed of $TODO$, is shown in Figure \ref{fig:randart1} Notice that the algorithm \textsc{RandomArt} will return an expression tree whose leaves are composed of functions whose operatncy is equal to $0$, guarranteeing the mapping outputted is indeed $\left[-1:1\right]^2 \rightarrow \left[-1:1\right]^3$. \\
+
+In order to guarrantee the \textit{Near-one-way Property}, we consider the input string $x$ be the result of a cryptographic hash of an arbitrary input string $x^{\prime}$. (we consider the usage of $MD5$ Algorithm \footnote{https://en.wikipedia.org/wiki/MD5}). Furthermore, we ensure the \textit{Regularity Property} by computing the Fourier Transform of the Random Art Algorithm output image and asserting whether {\color{red} TOODDDOOO}. 
+
+This is outlined in algorithm \cite{alg:randart}.
+
+\begin{algorithm}
+\caption{Description: Random Art Algorithm Adapted. Returning a image in case it is regular. Otherwise returns False. Notation: Let $f_i^{(p_i,j_i)}$ denote a function of a fixed expression set, where we let $p_i$ denoting the probability of the function being picked from the set and $j_i$ be the operancy (number of input expressions) of the function. Let $\mathcal{E}_1$ be the expression set of function with operancy $0$ and $\mathcal{E}_2$ be the expression set of function with operancy greater then $0$. Let $g$ denote an expression and $x$ denote a $\left[-1:1\right]$ value.
+\label{alg:randart}}
+\begin{algorithmic}[1] 
+
+\Procedure{RandomArtMod}{$x,d$}
+\LeftComment{Define Global Variables}
+\State $\mathcal{E}_1=\{f_i^{(p_i,j_i)}: j_i=0\}$
+\State $\mathcal{E}_2=\{f_i^{(p_i,j_i)}: j_i>0\}$ 
+\State Set $\epsilon$ and $\delta$
+
+\LeftComment{Algorithm Body}
+\State $\textsc{SetSeed}(h(x))$
+\State $\mathcal{F}=\textsc{RandomArt}(d)$
+\State $I=\textsc{DrawImage}(\mathcal{F})$
+\If{$\textsc{HighFrequencyNoise}(I,\delta)<\epsilon$} \\
+\quad \Return $I$
+\Else \\
+\quad \Return False
+\EndIf
+\EndProcedure
+
+\item 
+
+\Procedure{RandomArt}{$d$}
+\If{$d \le 0$}
+\State $f=\textsc{Random}_{p_1}(\mathcal{E}_1)$
+\Return $f(x_1,x_2,x_3)$
+\Else
+\State $f=\textsc{Random}_{p_2}(\mathcal{E}_2)$
+\For{$i=0; i<j_i; i++$}
+\State $d=\textsc{Random}_{Unif}(\left[0:d-1\right])$
+\State $g_i=\textsc{RandomArt}_{\mathrm{Unif}}(d)$
+\EndFor
+\EndIf
+\Return $f(g_1,\dots,g_{j_i})$
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{System Setup} \label{subsec:create}
+
+As mentioned in the section above, we let our Graphical Password alphabet consist of a set of images generated according to a variant of the Random Art Algorithm. Hence, we set up the system by creating a Graphical Password alphabet of size $M$, where let the input of each of the instances of the Random Art Algorithm be a randomly chosen string. Since we can reproduce each of images being given the input string, we consider only storing the string used to generate each of the images. Notice these string must be save in plain text, which implies that we must assume the system to be secure and trusted, similar to Kerberos \cite{Kerbyear}.
+
+\subsection{Registration Phase} \label{subsec:regist}
+
+Upon requesting to registrate, a user is presented with the complete Graphical Password alphabet. Given such alphabet, of size $M$, the user shall select a password composed of $N$ images. This is show in Figure \ref{fig:regist}
+
+\subsection{Authentication Phase} \label{subsec:authen}
+
+Upon requesting authentication, a register user is presented in a challenge. The system regenerates the challenge by randomly selecting a set of $n$ images belonging to the user's portfolio and $n-m$ images not belonging to the user's portfolio, which we identify as \textit{decoy images}. In case any of the images select from the user's portfolio is repeated, the system shall drop one of its examplers and pick an extra image from the set of the decoy images. The images are then randomly placed in the challenge environment. 
+
+
+\subsection{Known Attacks} \label{subsec:attacks}
+
+Similarly to what outlined by Dhamija and Perrig in \cite{dejavu}, we explored a series of possible attacks to the system, and analysed how to protect the system and how to chose its parameters accordingly. For the sake of notation, let Mallory be an attacker who tries to authenticate in the name of a user Alice (impersonation).
+
+\begin{enumerate}
+
+	\item \textbf{Brute-Force Attack.} In this scenario, Mallory attemps to impersonate Alice by successively solving the challenge proposed by the system. Since the challenge consists of selecting an ordered set of $n$ images out of a total $m$ images, the number of possible keys of a single challenge is $m^n$, yielding a probability of $\frac{1}{m^n}$ of randomly asserting the correct graphical password. Furthermore, notice that since each new challenge randomly selects a new subset of user's password and decoy images from the user's portfolio and from the Graphical Password alphabet, respectively, the probability of randomly asserting the correct graphical password is subsequent drawings does not decay uniformly. \\
+
+	Table \cite{tab:observerattk} provides an overview on the probability of randomly asserting the correct graphical password in a single challenge with respect to the values of $m$ and $n$.
+
+	\item \textbf{Observer / Shoulder Surfing Attack.} We identify two possible scenarios in a Observer / Shoulder Surfing Attack. In the first scenario, we consider that Mallory observes and anotes the correct graphical password select by Alice upon completing a challenge. The question of how many challenges Mallory needs to observe in average so to have complete knowledge of Alice's portfolio is addressed by a variant of the well-known \textit{Cuppon Collection Problem} \footnote{See https://en.wikipedia.org/wiki/Coupon\_collector's\_problem for details}, the \textit{Cuppon Collection Problem with constant size groups}, as in \cite{Ferrante2014}: 
+
+	\begin{align}
+		E\{\mathrm{\# trials} \} = \sum\limits_{i=n}^{N} (-1)^{N-i+1} \binom N{N-n} \frac{1}{1-\frac{\binom in}{\binom Nn}} + \sum\limits_{i=1}^{n} (-1)^{N-n+i+1} \binom N{N-n+i}
+	\end{align}
+
+	Table \cite{tab:observerattk} provides an overview on the average number of challenges Mallory needs to observe so to have complete knowledge of Alice's portfolio with respect to the values of $N$ and $n$. \\
+
+	In the second scenario, we consider that Mallory has only knowledge of the placement of the correct graphical password selected within the framework but not of the identity of the image itself. In this case, since the images are randomly placed within the framework, Mallory obtains no information about Alice's portfolio. 
+
+	\item \textbf{Intersection Attack.} In the Intersection Attack, Mallory observes a series of challenges and stores the images in memory. It then tries to recover Alice's portfolio through the information leaked by such knowledge. A simple, but effective procedure, is described in Algorithm \cite{alg:obsattk}.
+
+	\begin{algorithm}
+	\caption{
+	\label{alg:randart}}
+	\begin{algorithmic}[1] 
+
+	\Procedure{IntersectionAttack}{}
+	\State $W = \{1:0, \dots , M:0 \}$
+	\For{$i=1; i<=\mathrm{num\_draws}; i++$}	
+	\State $\{I^1, \dots , I^N\} \gets \textsc{Challenge}()$
+	\For{$j=1; j<=n; j{+}{+}$}
+	\State $\mathrm{tmp}=\textsc{img2index}(I^j)$
+	\State $W[\mathrm{tmp}] = W[\mathrm{tmp}]+1$
+	\EndFor
+	\EndFor
+	\State $W^{\prime}=\textsc{Sort}(W)$
+	\For{$i=1; i<=N; i{+}{+}$}
+	\State $I=\textsc{index2img}(W^{\prime}[i])$
+	\If{$I \notin P$} \\
+	\quad \quad \quad \Return $\mathrm{False}$
+	\EndIf
+	\EndFor \\
+	\Return $\mathrm{True}$
+	\EndProcedure
+
+	\end{algorithmic}
+	\end{algorithm}
+
+	Table \ref{tab:observerattk} provides an overview on the effectiveness of such \textit{Intersection Attack} with respect to the values of $m$ and $n$, for fixed $M$ and $N$.
+
+	\item \textbf{Educated Guess / Social Engineering Attack.}
+
+	In a \textit{Educated Guess / Social Engineering Attack} Mallory tries to take advantage of its knowledge about Alice's image preference and personal taste so to reduce the Graphical Password search space. As mentioned before, the hope is that by using \textit{Random Art} to generate the Graphical Password Alphabet, the randomness associated with the images select by Alice to make up her portfolio, make it increasly difficult to perform such an attack.
+
+\end{enumerate}
+
+\subsection{Parameter Choice} \label{subsec:attacks}
+
+	In order to choice the system parameters $M$, $N$, $m$ and $n$, we must take into account both the usability of the system and the well-known attacks reviewed in the previous section. The usability of the system concerns the size of the portfolio and ability of a user to easily memorize it and identify it within the challenge. This choice should have been validated thourgh a user study, which was not performed. The protection against the well-known attacks concern a balance between \\
+
+
+	Table \ref{tab:results} shows the performance of the parameters chosen against each of the attacks identified.
+
+% %%%%%%%%%% Introduction %%%%%%%%%%
+% \vspace{-7mm}
+
+% \section{Goals}
+
+% \begin{enumerate}
+
+% \item Place user authentication within the frame of cryptography and network security. 
+
+% \item Motivate interest of graphical passwords in the context of user authentication and its application.
+
+% \item Perform an analysis of the existing solutions, the challenges presented and some brief pointers to the on-going research. 
+
+% \item Justify the choice of a portfolio based challenge; justify the method chosen for the criation of images (thourgh hash visualization); 
+
+% \item Build application according to the high-level descripton presented below and justify parameters choice.
+
+% \item Point out general draw backs and advantages via the performance of some attacks and analysis (bruteforce, spyware, social engineering, relay attack).
+
+% \end{enumerate}
+
+% \section{Application}
+
+% \textbf{How is the challenge?}
+
+% \begin{enumerate}
+
+% \item User is presented with a set of $m \le M$ images picked from bucket of total $M$.
+
+% \item User selects a set of $n \le N$ images from a known user portfolio of size $N$.
+
+% \item User sorts the images selected according to its portfolio.
+
+% \item User is provided with authentication in case his or her answer matches the answer to the challenge.
+
+% \end{enumerate}
+
+% \textbf{How does the user select its portfolio?}
+
+% \begin{enumerate}
+
+% \item Upon registration, the user is presented with a set of $M$ images. 
+
+% \item User selects an ordered set of $N$ images, which now consistitute his or her portfolio.
+
+% \end{enumerate}
+
+% \textbf{How does the Authentication Server work?}
+
+% \begin{enumerate}
+
+% \item Receives request for authentication from user. 
+
+% \item Requests $m{/}k$ seeds from some $K \ge k$ Local Servers.
+
+% \item Computes images from seeds. Sends images to user.
+
+% \item Receives answer from user.
+
+% \item Send answers to local servers.
+
+% \item Receive answer from local servers.
+
+% \item Sends provide/not provide authentication message.
+
+% \end{enumerate}
+
+% \textbf{How does a Local Server work?}
+
+% \begin{enumerate}
+
+% \item Each local server keeps a subset of the seed---user and seed---bucket mapping stored in cleartext. Each local server has at least one copy.  
+
+% \end{enumerate}
+
+% \section{Work Plan}
+
+% \begin{enumerate}
+
+%     \item Application: (until 22/23 December?)
+
+%         \begin{enumerate}
+
+%         \item Construct Random Art for Image Generation (including Lempel-Ziv for image compression checker for regularity)
+
+%         \item Build Client/Server Protocols
+
+%         \item Build Interfaces
+
+%         \end{enumerate}
+
+%     \item User-Study (maybe? Don't know if necessary...)
+
+%     \item Report (until 27/28 December? Max 31.)
+
+% \end{enumerate}
+
+
+\end{document}
